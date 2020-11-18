@@ -1,0 +1,52 @@
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-18 18:12:33
+ * @Last Modified by:   czy0729
+ * @Last Modified time: 2020-11-18 18:12:33
+ */
+/*
+ * @Author: czy0729
+ * @Date: 2019-06-13 10:33:48
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-04-01 10:15:21
+ */
+@import '@styles/theme';
+@import '@styles/mixins';
+
+.inputWrap {
+  position: relative;
+  width: 100%;
+
+  &Focus {
+    padding-right: 64px;
+  }
+}
+.input {
+  height: 72px;
+  font-family: $font-family;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  color: $color-desc;
+  caret-color: $color-desc;
+  overflow: visible;
+}
+.placeholder {
+  height: 72px;
+  padding: 0;
+  font-family: $font-family;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  color: $color-extra;
+}
+.close {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 0;
+  width: 72px;
+  height: 72px;
+  margin-right: -16px;
+  transform: translateY(-50%);
+}

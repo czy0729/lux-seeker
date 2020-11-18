@@ -1,0 +1,44 @@
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-18 15:14:10
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 18:14:34
+ */
+@import '@styles/var';
+@import '@styles/extends';
+@import '@styles/mixins';
+
+$cls: '.c-btn';
+
+#{$cls} {
+  @extend %flex-center;
+  border: 0;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+  #{$cls}__text {
+    @include t(32px, 44px, $color-plain, center);
+    width: auto;
+  }
+  &__icon {
+    @extend #{$cls}__text;
+    min-width: 32px;
+    margin: 0 16px;
+
+    &--left {
+      margin-left: -(32px + 16px);
+    }
+    &--right {
+      margin-right: -(32px + 16px);
+    }
+  }
+  &--plain {
+    padding: 24px 0;
+    background: transparent;
+
+    #{$cls}__text {
+      color: $color-main;
+    }
+  }
+}

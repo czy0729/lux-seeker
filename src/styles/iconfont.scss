@@ -1,0 +1,39 @@
+/*
+ * 图标项目: https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.12&manage_type=myprojects&projectId=2211631&keyword=&project_type=&page=
+ * 使用方法: https://www.jianshu.com/p/383cfa15b191
+ *
+ * @Author: czy0729
+ * @Date: 2020-11-18 15:23:43
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 16:06:35
+ */
+@font-face {
+  font-family: 'iconfont'; /* project id 2211631 */
+  src: url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.eot');
+  src: url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.eot?#iefix')
+      format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.woff') format('woff'),
+    url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_2211631_sgwfenlccoa.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  // font-size: 16px;
+  // font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-right:before {
+  content: '\e79b';
+}
+
+.icon-connect:before {
+  content: '\e703';
+}
+
+.icon-share:before {
+  content: '\e704';
+}

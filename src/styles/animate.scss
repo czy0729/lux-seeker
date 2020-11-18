@@ -1,0 +1,45 @@
+/*
+ * https://github.com/animate-css/animate.css/blob/main/animate.css
+ *
+ * @Author: czy0729
+ * @Date: 2020-11-18 17:13:31
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 17:26:58
+ */
+@-webkit-keyframes slideRight {
+  0%,
+  15% {
+    transform: translate3d(0, 0, 0);
+  }
+  60%,
+  100% {
+    transform: translate3d(140px, 0, 0);
+  }
+}
+
+@-webkit-keyframes slideLeft {
+  0%,
+  15% {
+    transform: translate3d(0, 0, 0);
+  }
+  60%,
+  100% {
+    transform: translate3d(-140px, 0, 0);
+  }
+}
+
+.animate {
+  animation-duration: 4s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+
+  &--slide-right {
+    animation-name: slideRight;
+  }
+  &--slide-left {
+    animation-name: slideLeft;
+  }
+  &--repeat-1 {
+    animation-iteration-count: 1;
+  }
+}

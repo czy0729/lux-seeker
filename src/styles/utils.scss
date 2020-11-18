@@ -1,3 +1,9 @@
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-18 15:23:55
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 18:08:12
+ */
 .flex {
   display: flex;
 }
@@ -39,12 +45,21 @@
 .t-24 {
   font-size: 24px !important;
 }
+.t-26 {
+  font-size: 26px !important;
+}
 .t-30 {
   font-size: 30px !important;
+}
+.t-34 {
+  font-size: 34px !important;
 }
 
 .l-32 {
   line-height: 32px !important;
+}
+.l-44 {
+  line-height: 44px !important;
 }
 
 .t-sub {
@@ -58,11 +73,17 @@
   font-weight: 500 !important;
 }
 
+.mt-16 {
+  margin-top: 16px;
+}
 .mt-20 {
   margin-top: 20px;
 }
 .mt-28 {
   margin-top: 28px;
+}
+.mt-40 {
+  margin-top: 40px;
 }
 
 .ml-20 {
