@@ -1,0 +1,29 @@
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-18 10:59:15
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 14:38:12
+ */
+@import './var';
+
+@mixin bg($image, $size: cover, $position: center, $color: #000) {
+  background-image: url($image);
+  background-size: $size;
+  background-position: $position;
+  background-color: $color;
+  background-repeat: no-repeat;
+}
+
+@mixin t(
+  $size,
+  $line-height,
+  $color: $color-plain,
+  $text-align: left,
+  $font-weight: 400
+) {
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+  font-weight: $font-weight;
+  text-align: $text-align;
+}

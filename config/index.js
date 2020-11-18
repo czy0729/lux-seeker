@@ -1,3 +1,21 @@
+/* eslint-disable import/no-commonjs */
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-18 10:56:58
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-18 10:58:42
+ */
+const path = require('path')
+
+const sassImportor = function (url) {
+  const reg = /^@styles\/(.*)/
+  return {
+    file: reg.test(url)
+      ? path.resolve(__dirname, '..', 'src/styles', url.match(reg)[1])
+      : url
+  }
+}
+
 const config = {
   projectName: 'myApp',
   date: '2020-11-11',
@@ -10,22 +28,17 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [],
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'react',
   mini: {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {
-
-        }
+        config: {}
       },
       url: {
         enable: true,
@@ -48,8 +61,7 @@ const config = {
     postcss: {
       autoprefixer: {
         enable: true,
-        config: {
-        }
+        config: {}
       },
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
@@ -59,6 +71,12 @@ const config = {
         }
       }
     }
+  },
+  sass: {
+    importer: sassImportor
+  },
+  alias: {
+    '@styles': path.resolve(__dirname, '..', 'src/styles')
   }
 }
 

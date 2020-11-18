@@ -1,0 +1,37 @@
+%flex {
+  display: flex;
+}
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+%flex-center-y {
+  display: flex;
+  align-items: center;
+}
+%flex-end-x {
+  display: flex;
+  justify-content: flex-end;
+}
+%flex-end-y {
+  display: flex;
+  align-items: flex-end;
+}
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+%flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+%flex-1 {
+  flex: 1;
+}

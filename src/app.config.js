@@ -1,12 +1,12 @@
 export default {
-  pages: [
-    'pages/home/index',
-    'pages/index/index'
-  ],
+  pages: ['pages/docking/index', 'pages/home/index', 'pages/index/index'],
   window: {
+    backgroundColor: '#191919',
+    backgroundColorBottom: '#191919',
+    backgroundColorTop: '#191919',
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarBackgroundColor: '#191919',
+    navigationBarTextStyle: 'white',
+    navigationBarTitleText: '云知光灯光捕手'
   }
 }

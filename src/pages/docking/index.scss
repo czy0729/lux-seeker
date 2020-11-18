@@ -1,0 +1,46 @@
+@import '@styles/var';
+@import '@styles/extends';
+@import '@styles/mixins';
+
+.page {
+  padding: 20px 40px;
+}
+
+.head {
+  @extend %flex-end-y;
+  @include bg('../../assets/images/1_1.png', contain, top center);
+  height: 448px;
+  padding: 32px;
+  border-radius: 32px;
+
+  &-item {
+    @extend %flex-column-center;
+    @extend %flex-1;
+    height: 168px;
+    background: linear-gradient(
+      180deg,
+      rgb(47, 47, 47) 0%,
+      rgb(15, 15, 15) 100%
+    );
+    border-radius: 16px;
+
+    &__title {
+      @include t(30px, 32px, $color-plain, center, bold);
+    }
+    &__desc {
+      @include t(24px, 32px, $color-sub, center);
+    }
+  }
+}
+
+.foot {
+  @extend %flex-end-y;
+  height: 480px;
+  padding-bottom: 32px;
+  @include bg('../../assets/images/1_2.png', 380px, 50% 40px, $color-bg);
+  border-radius: 16px;
+
+  &__desc {
+    @include t(24px, 32px, $color-plain, center);
+  }
+}
