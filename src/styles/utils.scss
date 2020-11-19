@@ -1,9 +1,5 @@
-/*
- * @Author: czy0729
- * @Date: 2020-11-18 15:23:55
- * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 18:08:12
- */
+@import './mixins';
+
 .flex {
   display: flex;
 }
@@ -38,6 +34,11 @@
   justify-content: center;
   align-items: center;
 }
+.flex-column-center-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .flex-1 {
   flex: 1;
 }
@@ -62,8 +63,11 @@
   line-height: 44px !important;
 }
 
+.t-main {
+  color: $color-main !important;
+}
 .t-sub {
-  color: rgba(245, 242, 235, 0.3) !important;
+  color: $color-sub !important;
 }
 
 .t-c {

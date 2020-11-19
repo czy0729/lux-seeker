@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:33:44
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 10:51:44
+ * @Last Modified time: 2020-11-19 15:23:26
  */
 import React from 'react'
 import { View, Image } from '@tarojs/components'
@@ -45,7 +45,7 @@ Img.defaultProps = {
   className: '',
   style: null,
   src: '',
-  mode: 'aspectFill', // aspectFill | aspectFit
+  mode: 'aspectFit', // aspectFill | aspectFit
   width: screenWidth,
   height: null, // 高度, 不传时使用宽度
   onClick: Function.prototype

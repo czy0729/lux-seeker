@@ -3,7 +3,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:56:58
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 10:58:42
+ * @Last Modified time: 2020-11-19 20:18:39
  */
 const path = require('path')
 
@@ -30,7 +30,12 @@ const config = {
   plugins: [],
   defineConstants: {},
   copy: {
-    patterns: [],
+    patterns: [
+      // {
+      //   from: 'src/custom-tab-bar/',
+      //   to: `dist/${process.env.TARO_ENV}/custom-tab-bar/`
+      // }
+    ],
     options: {}
   },
   framework: 'react',

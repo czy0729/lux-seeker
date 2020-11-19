@@ -1,3 +1,4 @@
 export default {
-  navigationBarTitleText: '首页'
+  navigationBarTitleText: '云知光灯光捕手',
+  navigationStyle: 'custom'
 }

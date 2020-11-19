@@ -1,8 +1,8 @@
 /*
  * @Author: czy0729
  * @Date: 2020-11-18 15:23:50
- * @Last Modified by:   czy0729
- * @Last Modified time: 2020-11-18 15:23:50
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-19 14:52:35
  */
 %flex {
   display: flex;
@@ -36,6 +36,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+%flex-column-center-x {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 %flex-1 {

@@ -1,0 +1,55 @@
+@import '@styles/var';
+@import '@styles/extends';
+@import '@styles/mixins';
+
+.page {
+  @include bg('../../assets/images/0_1.png', 312px, top left, transparent);
+  padding: 176px 40px 0;
+
+  .title {
+    @include t(44px, 64px, $color-plain, center);
+    margin-bottom: 104px;
+  }
+
+  .item {
+    height: 304px;
+    padding: 0 60px;
+    margin-top: 24px;
+    background: rgba(65, 66, 68, 0.3);
+    border-radius: 32px;
+    box-shadow: 0px -5px 44px 0px rgba(255, 255, 255, 0.02);
+
+    &-label {
+      @include t(32px, 44px);
+      padding-left: 4px;
+      margin-top: 4px;
+    }
+    &-value {
+      @include t(64px, 88px, $color-main, left, bold);
+      font-family: DINAlternate-Bold, DINAlternate;
+    }
+    &-k {
+      @include bg('../../assets/images/k_bar.png', cover);
+      position: relative;
+      height: 24px;
+      margin: 44px -20px 0 -20px;
+      border-radius: 16px;
+
+      &__pointer {
+        @include bg(
+          '../../assets/images/pointer.png',
+          contain,
+          center,
+          transparent
+        );
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 0;
+        width: 20px;
+        height: 54px;
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+  }
+}

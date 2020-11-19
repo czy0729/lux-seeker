@@ -1,46 +1,103 @@
+/*
+ * @Author: czy0729
+ * @Date: 2020-11-19 14:10:40
+ * @Last Modified by: czy0729
+ * @Last Modified time: 2020-11-19 19:55:44
+ */
 import React, { Component } from 'react'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
-
+import { View, Text } from '@tarojs/components'
+import Img from '../../components/img'
+import { updateTabBar } from '../../utils'
 import './index.scss'
 
-
-@inject('store')
-@observer
 class Index extends Component {
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  increment = () => {
-    const { counterStore } = this.props.store
-    counterStore.increment()
+  state = {
+    lx: 0,
+    k: 0
   }
 
-  decrement = () => {
-    const { counterStore } = this.props.store
-    counterStore.decrement()
+  componentDidShow() {
+    updateTabBar(0)
   }
 
-  incrementAsync = () => {
-    const { counterStore } = this.props.store
-    counterStore.incrementAsync()
+  onTest = () => {
+    const testDS = [
+      [100.1, 1000],
+      [200.2, 2000],
+      [342.5, 3540],
+      [755.5, 4328],
+      [800.0, 10000]
+    ]
+    let count = 0
+    setInterval(() => {
+      const [lx, k] = testDS[count % testDS.length]
+      this.setState({
+        lx,
+        k
+      })
+      count += 1
+    }, 2000)
   }
 
-  render () {
-    const { counterStore: { counter } } = this.props.store
+  // 2000-7000k
+  get percent() {
+    const { k } = this.state
+    if (k <= 2000) {
+      return 0
+    }
+
+    if (k >= 7000) {
+      return '100%'
+    }
+
+    return `${(((k - 2000) / 5000) * 100).toFixed(2)}%`
+  }
+
+  render() {
+    const { lx, k } = this.state
     return (
-      <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
+      <View>
+        <View className='page'>
+          <Text class='title'>
+            徐老师的灯光捕手 <Text className='iconfont icon-connect t-main' />
+          </Text>
+
+          <View class='item flex-center-y'>
+            <View class='flex-1'>
+              <Img src={require('../../assets/images/lx.png')} width={70} />
+              <Text class='item-label'>照度</Text>
+            </View>
+            <View>
+              <Text class='item-value'>
+                {lx || '-'}
+                {'  '}lx
+              </Text>
+            </View>
+          </View>
+
+          <View class='item flex-column-center-y'>
+            <View class='flex-center-y'>
+              <View class='flex-1'>
+                <Img src={require('../../assets/images/k.png')} width={70} />
+                <Text class='item-label'>色温</Text>
+              </View>
+              <View>
+                <Text class='item-value'>
+                  {k || '-'}
+                  {'  '}K
+                </Text>
+              </View>
+            </View>
+            <View class='item-k'>
+              <View
+                class='item-k__pointer'
+                style={{
+                  left: this.percent
+                }}
+              />
+            </View>
+          </View>
+        </View>
       </View>
     )
   }
