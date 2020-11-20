@@ -1,0 +1,108 @@
+@import '@styles/var';
+@import '@styles/extends';
+@import '@styles/mixins';
+
+$page: calc(100vh - #{$height-tab-bar});
+$head: var(--menu-button-height);
+$head-margin-bottom: 20px;
+$th: 80px;
+$ft: 168px + 40px;
+$ul: calc(
+  100vh - #{$height-tab-bar} - #{$head} - #{$head-margin-bottom} - #{$th} - #{$ft}
+);
+
+.page {
+  @extend %flex-column;
+  height: $page;
+  padding-top: var(--menu-button-top);
+
+  .head {
+    position: relative;
+    @extend %flex-center;
+    height: $head;
+    margin-bottom: $head-margin-bottom;
+    @include t(30px, 44px, $color-plain, center);
+
+    &-left {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 0;
+      @extend %flex-center;
+      padding-left: 24px;
+      transform: translateY(-50%);
+    }
+    .iconfont {
+      width: 64px;
+      height: 88px;
+      margin-right: 24px;
+      @include t(36px, 88px, $color-plain, center);
+    }
+  }
+
+  .th {
+    @extend %flex-center-y;
+    height: $th;
+    padding: 0 24px 40px;
+    @include t(26px, 48px, $color-sub, left, 500);
+    background: #171717;
+    box-shadow: 0px -5px 44px 0px rgba(255, 255, 255, 0.02);
+    border-radius: 40px 40px 0px 0px;
+
+    text {
+      flex: 1;
+      padding: 0 16px;
+
+      &:nth-of-type(1) {
+        flex: 0.6;
+      }
+      &:nth-of-type(2) {
+        flex: 1.2;
+      }
+    }
+  }
+
+  .ul {
+    height: $ul;
+    padding-bottom: 40px;
+    margin-top: -40px;
+    background-image: linear-gradient(rgb(36, 36, 36), rgb(40, 40, 40));
+    border-radius: 40px 40px 0px 0px;
+
+    .li {
+      @extend %flex-center-y;
+      height: 130px;
+      margin: 0 32px;
+      @include t(32px, 48px, #f5f2eb);
+
+      &:not(:first-child) {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      text {
+        flex: 1;
+        padding: 0 16px;
+
+        &:nth-of-type(1) {
+          flex: 0.6;
+        }
+        &:nth-of-type(2) {
+          flex: 1.2;
+        }
+      }
+    }
+    .placeholder {
+      height: 64px;
+    }
+  }
+
+  .ft {
+    position: relative;
+    z-index: 1;
+    height: $ft;
+    margin-top: -40px;
+    margin-bottom: -40px;
+    background: linear-gradient(180deg, #3d3d3d 0%, #292929 100%);
+    box-shadow: 0px -5px 44px 0px rgba(255, 255, 255, 0.02);
+    border-radius: 40px 40px 0px 0px;
+  }
+}

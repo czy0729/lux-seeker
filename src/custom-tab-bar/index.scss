@@ -17,7 +17,7 @@
   .item {
     @extend %flex-center;
     flex: 1;
-    height: 176px;
+    height: $height-tab-bar;
     opacity: 0.3;
 
     &--active {

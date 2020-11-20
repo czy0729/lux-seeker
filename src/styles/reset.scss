@@ -2,16 +2,16 @@
  * @Author: czy0729
  * @Date: 2020-11-18 15:00:01
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-19 14:56:22
+ * @Last Modified time: 2020-11-20 10:59:26
  */
 page {
-  min-height: 100vh;
+  height: 100vh;
   background-image: linear-gradient(rgb(25, 25, 25), rgb(32, 32, 32));
 }
 text {
   display: block;
   width: 100%;
-  color: #fff;
+  // color: #fff;
 
   text {
     display: inline-block;

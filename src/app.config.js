@@ -1,9 +1,8 @@
 export default {
   pages: [
-    'pages/index/index',
     'pages/tick/index',
-    'pages/setting/index',
-    'pages/home/index',
+    'pages/index/index',
+    // 'pages/setting/index',
     'pages/docking/index'
   ],
   window: {
@@ -29,10 +28,10 @@ export default {
         pagePath: 'pages/tick/index',
         text: '逐点测量'
       },
-      {
-        pagePath: 'pages/setting/index',
-        text: '设置'
-      }
+      // {
+      //   pagePath: 'pages/setting/index',
+      //   text: '设置'
+      // }
     ]
   }
 }
