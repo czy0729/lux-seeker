@@ -2,13 +2,24 @@
 @import '@styles/extends';
 @import '@styles/mixins';
 
+$page: calc(100vh - #{$height-tab-bar});
+
 .page {
-  @include bg('../../assets/images/0_1.png', 312px, top left, transparent);
-  padding: 176px 40px 0;
+  @include bg('../../assets/images/0_1.png', 320px, top left, transparent);
+  height: $page;
+  padding: var(--menu-button-top) 40px 0;
+
+  .navigation-title {
+    @extend %flex-center-y;
+    height: var(--menu-button-height);
+    margin-bottom: 64px;
+    @include t(30px, 44px);
+  }
 
   .title {
     @extend %flex-center;
     @include t(44px, 64px, $color-plain, center);
+    margin-right: -44px;
     margin-bottom: 104px;
   }
 

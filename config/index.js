@@ -3,7 +3,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:56:58
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-19 20:18:39
+ * @Last Modified time: 2020-11-23 14:51:52
  */
 const path = require('path')
 
@@ -59,6 +59,9 @@ const config = {
         }
       }
     }
+    // prerender: {
+    //   include: ['pages/index/index', 'pages/tick/index', 'pages/setting/index']
+    // }
   },
   h5: {
     publicPath: '/',

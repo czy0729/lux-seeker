@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 12:10:28
+ * @Last Modified time: 2020-11-23 14:03:01
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
@@ -17,7 +17,7 @@ import './index.scss'
 @observer
 class Docking extends Component {
   state = {
-    step: 2,
+    step: 1,
     docked: false,
     open: false
   }

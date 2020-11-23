@@ -4,7 +4,7 @@
  * @Author: czy0729
  * @Date: 2020-11-13 11:36:10
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 12:03:03
+ * @Last Modified time: 2020-11-23 17:51:19
  */
 import Taro from '@tarojs/taro'
 import classNames from 'classnames'
@@ -35,17 +35,6 @@ export function urlStringify(payload, encode = true) {
     key => `${key}=${encode ? encodeURIComponent(payload[key]) : payload[key]}`
   )
   return arr.join('&')
-}
-
-/**
- * 动态更新导航栏
- * @param {*} active
- */
-export function updateTabBar(selected = 0) {
-  console.log(Taro.getCurrentInstance().page.getTabBar())
-  Taro.getCurrentInstance().page.getTabBar().setData({
-    selected
-  })
 }
 
 /**

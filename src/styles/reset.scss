@@ -2,10 +2,12 @@
 
 page {
   height: 100vh;
+  background-color: #191919;
   background-image: linear-gradient(rgb(25, 25, 25), rgb(32, 32, 32));
 }
 text {
   display: block;
+  font-family: PingFangSC-Regular, PingFang SC;
   color: $color-plain;
   // width: 100%;
   // color: #fff;

@@ -2,18 +2,12 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 10:59:42
+ * @Last Modified time: 2020-11-23 17:51:42
  */
 import React, { Component } from 'react'
 import { ScrollView, View, Text } from '@tarojs/components'
 import Btn from '../../components/btn'
-import {
-  updateTabBar,
-  getTimestamp,
-  date,
-  deepmerge,
-  random
-} from '../../utils'
+import { getTimestamp, date, deepmerge, random } from '../../utils'
 import { menuButtonStyleInject } from '../../constants'
 import './index.scss'
 
@@ -40,10 +34,6 @@ class Tick extends Component {
         k: getRandomK()
       }
     ]
-  }
-
-  componentDidShow() {
-    updateTabBar(1)
   }
 
   onReset = () => {
@@ -141,7 +131,7 @@ class Tick extends Component {
             </View>
             <View className='flex-1'>
               <Text className='ft-label'>平均色温</Text>
-              <Text className='ft-value'>{this.avgK} k</Text>
+              <Text className='ft-value'>{this.avgK} K</Text>
             </View>
           </View>
           <Btn className='ml-16' type='plain-fill' onClick={this.onReset}>

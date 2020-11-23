@@ -2,15 +2,15 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:12:50
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 10:14:40
+ * @Last Modified time: 2020-11-23 17:46:27
  */
 import React, { Component } from 'react'
 import { Provider } from 'mobx-react'
-import counterStore from './store/counter'
+import tabbarStore from './store/tabbar'
 import './app.scss'
 
 const store = {
-  counterStore
+  tabbar: tabbarStore
 }
 
 class App extends Component {

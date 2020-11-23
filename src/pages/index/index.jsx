@@ -2,12 +2,13 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 12:01:51
+ * @Last Modified time: 2020-11-23 17:51:31
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 import Img from '../../components/img'
-import { updateTabBar, random, push } from '../../utils'
+import { random, push } from '../../utils'
+import { menuButtonStyleInject } from '../../constants'
 import './index.scss'
 
 function getRandomLx() {
@@ -32,10 +33,6 @@ class Index extends Component {
     }, 4000)
   }
 
-  componentDidShow() {
-    updateTabBar(0)
-  }
-
   // 2000-7000k
   get percent() {
     const { k } = this.state
@@ -53,7 +50,9 @@ class Index extends Component {
   render() {
     const { lx, k } = this.state
     return (
-      <View className='page'>
+      <View className='page' style={menuButtonStyleInject}>
+        <Text className='navigation-title'>云知光灯光捕手</Text>
+
         <View class='title'>
           <Text>徐老师的灯光捕手 </Text>
           <View className='ml-12' onClick={() => push('docking')}>
@@ -67,10 +66,7 @@ class Index extends Component {
             <Text class='item-label'>照度</Text>
           </View>
           <View>
-            <Text class='item-value'>
-              {lx || '-'}
-              {'  '}lx
-            </Text>
+            <Text class='item-value'>{lx || '-'} lx</Text>
           </View>
         </View>
 
@@ -81,10 +77,7 @@ class Index extends Component {
               <Text class='item-label'>色温</Text>
             </View>
             <View>
-              <Text class='item-value'>
-                {k || '-'}
-                {'  '}K
-              </Text>
+              <Text class='item-value'>{k || '-'} K</Text>
             </View>
           </View>
           <View class='item-k'>
