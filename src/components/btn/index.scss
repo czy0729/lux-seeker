@@ -1,9 +1,3 @@
-/*
- * @Author: czy0729
- * @Date: 2020-11-18 15:14:10
- * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 18:14:34
- */
 @import '@styles/var';
 @import '@styles/extends';
 @import '@styles/mixins';
@@ -14,8 +8,11 @@ $cls: '.c-btn';
   @extend %flex-center;
   border: 0;
 
-  &:hover {
-    filter: brightness(1.1);
+  // &:hover {
+  //   filter: brightness(1.1);
+  // }
+  &:active {
+    filter: brightness(0.8);
   }
   #{$cls}__text {
     @include t(32px, 44px, $color-plain, center);
@@ -33,12 +30,31 @@ $cls: '.c-btn';
       margin-right: -(32px + 16px);
     }
   }
-  &--plain {
+  &--main {
     padding: 24px 0;
+    color: $color-main;
     background: transparent;
 
     #{$cls}__text {
       color: $color-main;
+    }
+  }
+  &--main-fill {
+    padding: 24px 28px;
+    background: $color-main;
+    border-radius: 20px;
+
+    #{$cls}__text {
+      @include t(32px, 44px, #303133, center, bold);
+    }
+  }
+  &--plain-fill {
+    padding: 24px 28px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+
+    #{$cls}__text {
+      @include t(32px, 44px, #303133, center, bold);
     }
   }
 }

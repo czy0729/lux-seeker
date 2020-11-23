@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 18:18:04
+ * @Last Modified time: 2020-11-23 09:56:12
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
@@ -105,7 +105,7 @@ class Docking extends Component {
             <Text className='t-26 l-32 t-c mt-16'>为您的设备命名</Text>
           </AtModalContent>
           <AtModalAction>
-            <Btn>确定</Btn>
+            <Btn type='main'>确定</Btn>
           </AtModalAction>
         </AtModal>
       </View>

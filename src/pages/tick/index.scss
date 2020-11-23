@@ -96,13 +96,22 @@ $ul: calc(
   }
 
   .ft {
+    @extend %flex-center;
     position: relative;
     z-index: 1;
-    height: $ft;
+    padding: 36px 40px;
     margin-top: -40px;
     margin-bottom: -40px;
     background: linear-gradient(180deg, #3d3d3d 0%, #292929 100%);
     box-shadow: 0px -5px 44px 0px rgba(255, 255, 255, 0.02);
     border-radius: 40px 40px 0px 0px;
+
+    &-label {
+      @include t(24px, 32px, #a3a19d);
+    }
+    &-value {
+      @include t(36px, 48px, $color-plain, left, bold);
+      margin-top: 8px;
+    }
   }
 }
