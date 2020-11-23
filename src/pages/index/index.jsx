@@ -2,41 +2,38 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-19 19:55:44
+ * @Last Modified time: 2020-11-23 12:01:51
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 import Img from '../../components/img'
-import { updateTabBar } from '../../utils'
+import { updateTabBar, random, push } from '../../utils'
 import './index.scss'
+
+function getRandomLx() {
+  return Number(`${random(0, 800)}.${random(0, 9)}`)
+}
+function getRandomK() {
+  return Number(`${random(2000, 7000)}.${random(0, 9)}`)
+}
 
 class Index extends Component {
   state = {
-    lx: 0,
-    k: 0
+    lx: getRandomLx(),
+    k: getRandomK()
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        lx: getRandomLx(),
+        k: getRandomK()
+      })
+    }, 4000)
   }
 
   componentDidShow() {
     updateTabBar(0)
-  }
-
-  onTest = () => {
-    const testDS = [
-      [100.1, 1000],
-      [200.2, 2000],
-      [342.5, 3540],
-      [755.5, 4328],
-      [800.0, 10000]
-    ]
-    let count = 0
-    setInterval(() => {
-      const [lx, k] = testDS[count % testDS.length]
-      this.setState({
-        lx,
-        k
-      })
-      count += 1
-    }, 2000)
   }
 
   // 2000-7000k
@@ -56,46 +53,47 @@ class Index extends Component {
   render() {
     const { lx, k } = this.state
     return (
-      <View>
-        <View className='page'>
-          <Text class='title'>
-            徐老师的灯光捕手 <Text className='iconfont icon-connect t-main' />
-          </Text>
+      <View className='page'>
+        <View class='title'>
+          <Text>徐老师的灯光捕手 </Text>
+          <View className='ml-12' onClick={() => push('docking')}>
+            <Text className='iconfont icon-connect t-main' />
+          </View>
+        </View>
 
-          <View class='item flex-center-y'>
+        <View class='item flex-center-y'>
+          <View class='flex-1'>
+            <Img src={require('../../assets/images/lx.png')} width={70} />
+            <Text class='item-label'>照度</Text>
+          </View>
+          <View>
+            <Text class='item-value'>
+              {lx || '-'}
+              {'  '}lx
+            </Text>
+          </View>
+        </View>
+
+        <View class='item flex-column-center-y'>
+          <View class='flex-center-y'>
             <View class='flex-1'>
-              <Img src={require('../../assets/images/lx.png')} width={70} />
-              <Text class='item-label'>照度</Text>
+              <Img src={require('../../assets/images/k.png')} width={70} />
+              <Text class='item-label'>色温</Text>
             </View>
             <View>
               <Text class='item-value'>
-                {lx || '-'}
-                {'  '}lx
+                {k || '-'}
+                {'  '}K
               </Text>
             </View>
           </View>
-
-          <View class='item flex-column-center-y'>
-            <View class='flex-center-y'>
-              <View class='flex-1'>
-                <Img src={require('../../assets/images/k.png')} width={70} />
-                <Text class='item-label'>色温</Text>
-              </View>
-              <View>
-                <Text class='item-value'>
-                  {k || '-'}
-                  {'  '}K
-                </Text>
-              </View>
-            </View>
-            <View class='item-k'>
-              <View
-                class='item-k__pointer'
-                style={{
-                  left: this.percent
-                }}
-              />
-            </View>
+          <View class='item-k'>
+            <View
+              class='item-k__pointer'
+              style={{
+                left: this.percent
+              }}
+            />
           </View>
         </View>
       </View>

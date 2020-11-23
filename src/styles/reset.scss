@@ -1,21 +1,17 @@
-/*
- * @Author: czy0729
- * @Date: 2020-11-18 15:00:01
- * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-20 10:59:26
- */
+@import './var';
+
 page {
   height: 100vh;
   background-image: linear-gradient(rgb(25, 25, 25), rgb(32, 32, 32));
 }
 text {
   display: block;
-  width: 100%;
+  color: $color-plain;
+  // width: 100%;
   // color: #fff;
 
   text {
     display: inline-block;
-    width: auto;
   }
 }
 ::-webkit-scrollbar {

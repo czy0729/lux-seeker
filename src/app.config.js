@@ -1,9 +1,11 @@
 export default {
   pages: [
-    'pages/tick/index',
     'pages/index/index',
-    // 'pages/setting/index',
-    'pages/docking/index'
+    'pages/tick/index',
+    'pages/setting/index',
+    'pages/docking/index',
+    'pages/about/index',
+    'pages/explain/index'
   ],
   window: {
     backgroundColor: '#191919',
@@ -28,10 +30,10 @@ export default {
         pagePath: 'pages/tick/index',
         text: '逐点测量'
       },
-      // {
-      //   pagePath: 'pages/setting/index',
-      //   text: '设置'
-      // }
+      {
+        pagePath: 'pages/setting/index',
+        text: '设置'
+      }
     ]
   }
 }

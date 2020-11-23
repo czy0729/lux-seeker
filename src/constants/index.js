@@ -3,10 +3,11 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:37:47
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-20 15:28:03
+ * @Last Modified time: 2020-11-23 11:40:29
  */
 import Taro from '@tarojs/taro'
 
+export const CDN = 'https://cdn.elicht.com/images/luxseeker'
 export const {
   platform,
   model,
@@ -28,4 +29,4 @@ export const menuButtonStyleInject = {
 }
 export const colorPlaceholder = 'rgb(0, 0, 0)'
 
-console.log( Taro.getSystemInfoSync(), menuButton)
+console.log(Taro.getSystemInfoSync(), menuButton)

@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 09:56:12
+ * @Last Modified time: 2020-11-23 12:10:28
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
@@ -57,7 +57,12 @@ class Docking extends Component {
           <Text class='foot-desc'>电源指示灯{'\n'}开机时点亮</Text>
         </View>
 
-        <Btn className='mt-28' iconRight='right' onClick={this.onNext}>
+        <Btn
+          className='mt-28'
+          type='main'
+          iconRight='right'
+          onClick={this.onNext}
+        >
           下一步
         </Btn>
       </View>
@@ -94,7 +99,12 @@ class Docking extends Component {
         </View>
 
         {!docked && (
-          <Btn className='mt-40' iconRight='right' onClick={this.onDocked}>
+          <Btn
+            className='mt-40'
+            type='main'
+            iconRight='right'
+            onClick={this.onDocked}
+          >
             模拟蓝牙对接完成
           </Btn>
         )}

@@ -7,6 +7,7 @@
   padding: 176px 40px 0;
 
   .title {
+    @extend %flex-center;
     @include t(44px, 64px, $color-plain, center);
     margin-bottom: 104px;
   }

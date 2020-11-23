@@ -4,7 +4,7 @@
  * @Author: czy0729
  * @Date: 2020-11-13 11:36:10
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 10:35:01
+ * @Last Modified time: 2020-11-23 12:03:03
  */
 import Taro from '@tarojs/taro'
 import classNames from 'classnames'
@@ -26,6 +26,18 @@ export function c(...arg) {
 }
 
 /**
+ * @version 190221 1.0
+ * @param {*} payload
+ * @param {*} encode
+ */
+export function urlStringify(payload, encode = true) {
+  const arr = Object.keys(payload).map(
+    key => `${key}=${encode ? encodeURIComponent(payload[key]) : payload[key]}`
+  )
+  return arr.join('&')
+}
+
+/**
  * 动态更新导航栏
  * @param {*} active
  */
@@ -33,6 +45,37 @@ export function updateTabBar(selected = 0) {
   console.log(Taro.getCurrentInstance().page.getTabBar())
   Taro.getCurrentInstance().page.getTabBar().setData({
     selected
+  })
+}
+
+/**
+ * 保留当前页面，跳转到应用内的某个页面。但是不能跳到 tabbar 页面。
+ * 使用 wx.navigateBack 可以返回到原页面。小程序中页面栈最多十层。
+ * @param {*} url
+ * @param {*} options
+ */
+export function push(url, options = {}) {
+  if (!url) {
+    Taro.showToast({
+      title: '缺少页面',
+      icon: 'none',
+      duration: 800
+    })
+    return
+  }
+
+  // 简化url的传参
+  let _url
+  if (url.includes('/pages')) {
+    _url = url
+  } else if (url.split('/').length > 1) {
+    _url = `/pages/${url}`
+  } else {
+    _url = `/pages/${url}/index`
+  }
+
+  return Taro.navigateTo({
+    url: `${_url}?${urlStringify(options)}`
   })
 }
 
@@ -303,10 +346,59 @@ export function date(format, timestamp) {
   })
 }
 
+/**
+ * 深拷贝
+ * @param {*} data
+ */
 export function deepmerge(data) {
   return JSON.parse(JSON.stringify(data))
 }
 
+/**
+ * 随机数
+ * @param {*} min
+ * @param {*} max
+ */
 export function random(min, max) {
   return Math.round(Math.random() * (max - min)) + min
+}
+
+/**
+ * 选择OSS图片质量
+ * @param {*} url
+ * @param {*} w
+ */
+export function oss(url = '', w = 750) {
+  try {
+    if (!url) {
+      return ''
+    }
+
+    if (
+      /^((https?:)?\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i.test(
+        url
+      ) &&
+      !url.includes('elicht.com') &&
+      !url.includes('eltmall.com') &&
+      !url.includes('litku.com')
+    ) {
+      return url
+    }
+
+    if (
+      url.includes(`?x-oss-process=style/w${w}`) ||
+      (url.indexOf('http') !== 0 && url.indexOf('//') !== 0)
+    ) {
+      return url
+    }
+
+    // 强制复写w
+    if (url.includes('?x-oss-process=style/w')) {
+      return `${url.split('?')[0]}?x-oss-process=style/w${w}`
+    }
+
+    return `${url}?x-oss-process=style/w${w}`
+  } catch (error) {
+    return url
+  }
 }
