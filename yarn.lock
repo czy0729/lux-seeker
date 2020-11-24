@@ -1067,6 +1067,11 @@
     swiper "4.4.2"
     weui "^1.1.2"
 
+"@tarojs/extend@^3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/extend/-/extend-3.0.17.tgz#7b65dc675e1e49580f9e1c022e386a6956092005"
+  integrity sha512-95GN1iLz3HoEkxIEH4SNOm0VHajF6vvA+rMOTBvJMNzoCuvtQZjLh8INQdWHEfzaexHkAZjQ+L5HfQQhOkTb7Q==
+
 "@tarojs/helper@3.0.16":
   version "3.0.16"
   resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.0.16.tgz#11483cc515166d45127cd3d84d3f095f31736c63"

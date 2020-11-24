@@ -2,17 +2,39 @@
  * @Author: czy0729
  * @Date: 2020-11-18 18:10:44
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-18 18:12:39
+ * @Last Modified time: 2020-11-24 10:24:37
  */
-import Taro from '@tarojs/taro'
+import React, { Component } from 'react'
 import { View, Input } from '@tarojs/components'
-import { sfc, c } from '@utils'
-import Iconfont from '../iconfont'
-import styles from './index.module.scss'
+import { c } from '../../utils'
+import './index.scss'
 
-let windowHeight = window.innerHeight
+const cls = 'c-ipt'
+// let windowHeight = window.innerHeight
 
-class CInput extends Taro.Component {
+class Ipt extends Component {
+  static defaultProps = {
+    className: '',
+    inputClassName: '',
+    type: 'text',
+    value: '',
+    placeholder: '请输入',
+    focus: false,
+    // clear: true,
+    maxlength: -1,
+    cursorSpacing: 16,
+    password: false,
+    confirmType: 'go',
+    adjustPosition: true,
+    showClear: true,
+    align: 'left', // left | right
+    onChange: Function.prototype,
+    onFocus: Function.prototype,
+    _onFocus: Function.prototype,
+    onBlur: Function.prototype,
+    onConfirm: Function.prototype
+  }
+
   state = {
     focused: false
   }
@@ -33,7 +55,7 @@ class CInput extends Taro.Component {
       },
       () => {
         _onFocus(e)
-        windowHeight = window.innerHeight
+        // windowHeight = window.innerHeight
       }
     )
   }
@@ -46,7 +68,7 @@ class CInput extends Taro.Component {
       },
       () => {
         onBlur(e)
-        this.fixedWindowPosition()
+        // this.fixedWindowPosition()
       }
     )
   }
@@ -62,20 +84,20 @@ class CInput extends Taro.Component {
    * [iOS微信浏览器] 输入框失去焦点后页面不回弹或者底部留白问题
    * https://www.cnblogs.com/blackbentel/p/10239886.html
    */
-  fixedWindowPosition = () => {
-    if (windowHeight == window.innerHeight) {
-      return
-    }
+  // fixedWindowPosition = () => {
+  //   if (windowHeight == window.innerHeight) {
+  //     return
+  //   }
 
-    let currentPosition
-    let speed = 1 // 页面滚动距离
-    currentPosition =
-      document.documentElement.scrollTop || document.body.scrollTop
-    currentPosition -= speed
-    window.scrollTo(0, currentPosition)
-    currentPosition += speed
-    window.scrollTo(0, currentPosition)
-  }
+  //   let currentPosition
+  //   let speed = 1 // 页面滚动距离
+  //   currentPosition =
+  //     document.documentElement.scrollTop || document.body.scrollTop
+  //   currentPosition -= speed
+  //   window.scrollTo(0, currentPosition)
+  //   currentPosition += speed
+  //   window.scrollTo(0, currentPosition)
+  // }
 
   render() {
     const {
@@ -91,7 +113,7 @@ class CInput extends Taro.Component {
       cursorSpacing,
       password,
       confirmType,
-      showClear,
+      // showClear,
       align,
       onConfirm
     } = this.props
@@ -100,16 +122,16 @@ class CInput extends Taro.Component {
     return (
       <View
         className={c(
-          styles.inputWrap,
+          cls,
           {
-            [styles.inputWrapFocus]: focused && value,
-            't-r': isRight
+            'c-ipt--focus': focused && value,
+            'c-ipt--right': isRight
           },
           className
         )}
       >
         <Input
-          className={c(styles.input, inputClassName, {
+          className={c('c-ipt__input', inputClassName, {
             't-r': isRight
           })}
           style={style}
@@ -117,7 +139,7 @@ class CInput extends Taro.Component {
           value={value}
           focus={focus}
           name={name}
-          placeholderClass={styles.placeholder}
+          placeholderClass='c-ipt__input--placeholder'
           placeholder={placeholder}
           maxLength={maxlength}
           cursorSpacing={cursorSpacing}
@@ -128,37 +150,9 @@ class CInput extends Taro.Component {
           onBlur={this.onBlur}
           onConfirm={onConfirm}
         />
-        {showClear && !!value && focused && (
-          <View
-            className={c(styles.close, 'flex flex-justify-center')}
-            onTouchStart={this.onClear}
-          >
-            <Iconfont className='t-24 l-40 t-icon' name='close' />
-          </View>
-        )}
       </View>
     )
   }
 }
 
-export default sfc(CInput, {
-  className: '',
-  inputClassName: '',
-  type: 'text',
-  value: '',
-  placeholder: '请输入',
-  focus: false,
-  clear: true,
-  maxlength: -1,
-  cursorSpacing: 16,
-  password: false,
-  confirmType: 'go',
-  adjustPosition: true,
-  showClear: true,
-  align: 'left', // left | right
-  onChange: Function.prototype,
-  onFocus: Function.prototype,
-  _onFocus: Function.prototype,
-  onBlur: Function.prototype,
-  onConfirm: Function.prototype
-})
+export default Ipt

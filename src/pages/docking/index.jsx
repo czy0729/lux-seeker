@@ -2,24 +2,31 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 14:03:01
+ * @Last Modified time: 2020-11-24 10:56:53
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
+// import { $ } from '@tarojs/extend'
 import { AtModal, AtModalContent, AtModalAction } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
 import Btn from '../../components/btn'
 import Img from '../../components/img'
-import { c } from '../../utils'
+import Ipt from '../../components/ipt'
+import { c, trim, info, back, sleep } from '../../utils'
 import './index.scss'
+
+const initState = {
+  step: 1,
+  docked: false,
+  open: false,
+  name: ''
+}
 
 @inject('store')
 @observer
 class Docking extends Component {
   state = {
-    step: 1,
-    docked: false,
-    open: false
+    ...initState
   }
 
   onNext = () => {
@@ -28,10 +35,40 @@ class Docking extends Component {
     })
   }
 
-  onDocked = () => {
+  onDocked = async () => {
     this.setState({
       docked: true,
       open: true
+    })
+
+    // await sleep(240)
+    // console.log($('.c-ipt__input').focus)
+  }
+
+  onChange = name => {
+    this.setState({
+      name
+    })
+  }
+
+  onSubmit = async () => {
+    const { name } = this.state
+    if (trim(name) === '') {
+      info('请输入设备名字')
+      return
+    }
+
+    info('配对成功', 'success')
+    this.setState({
+      open: false
+    })
+
+    await sleep(2000)
+    back()
+
+    await sleep(400)
+    this.setState({
+      ...initState
     })
   }
 
@@ -70,7 +107,7 @@ class Docking extends Component {
   }
 
   renderStep2() {
-    const { docked, open } = this.state
+    const { docked, open, name } = this.state
     return (
       <View className='page page--step-2'>
         <View className='stage'>
@@ -113,9 +150,10 @@ class Docking extends Component {
           <AtModalContent>
             <Text className='t-34 l-44 t-c'>命名</Text>
             <Text className='t-26 l-32 t-c mt-16'>为您的设备命名</Text>
+            <Ipt className='mt-36' value={name} onChange={this.onChange} />
           </AtModalContent>
           <AtModalAction>
-            <Btn type='main'>确定</Btn>
+            <Btn onClick={this.onSubmit}>确定</Btn>
           </AtModalAction>
         </AtModal>
       </View>

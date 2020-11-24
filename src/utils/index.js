@@ -1,13 +1,13 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-shadow */
 /*
  * @Author: czy0729
  * @Date: 2020-11-13 11:36:10
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 17:51:19
+ * @Last Modified time: 2020-11-24 10:41:38
  */
 import Taro from '@tarojs/taro'
 import classNames from 'classnames'
+import { IOS } from '../constants'
 
 /**
  * Taro 转单位 (缩短引用)
@@ -66,6 +66,51 @@ export function push(url, options = {}) {
   return Taro.navigateTo({
     url: `${_url}?${urlStringify(options)}`
   })
+}
+
+/**
+ * 退后
+ * @param {*} options
+ */
+export function back(options = { delta: 1 }) {
+  return Taro.navigateBack(options)
+}
+
+/**
+ * 轻提示
+ * @param {*} str
+ * @param {*} duration
+ */
+export function info(str = '', icon = 'none', duration = 2400) {
+  /**
+   * Taro.showToast会把body改成fixed布局
+   * 在iOS微信下, 若页面会出现键盘的时候showToast, 键盘收起后屏幕下方会产生空白
+   * 需要等到键盘收起来才showToast
+   */
+  if (IOS) {
+    setTimeout(() => {
+      Taro.showToast({
+        title: str,
+        icon,
+        duration
+      })
+    }, 80)
+  } else {
+    Taro.showToast({
+      title: str,
+      icon,
+      duration
+    })
+  }
+}
+
+/**
+ * 睡眠函数
+ * @version 180417 1.0
+ * @return {Promise}
+ */
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 /**
@@ -166,7 +211,9 @@ export function date(format, timestamp) {
       return pad(f.j(), 2)
     },
     D: function () {
+      // eslint-disable-next-line no-undef
       t = f.l()
+      // eslint-disable-next-line no-undef
       return t.substr(0, 3)
     },
     j: function () {
@@ -213,7 +260,9 @@ export function date(format, timestamp) {
       return pad(f.n(), 2)
     },
     M: function () {
+      // eslint-disable-next-line no-undef
       t = f.F()
+      // eslint-disable-next-line no-undef
       return t.substr(0, 3)
     },
     n: function () {
