@@ -2,74 +2,76 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 17:51:31
+ * @Last Modified time: 2020-11-25 16:26:10
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
+import { observer, inject } from 'mobx-react'
+import IBeacon from '../../components/ibeacon'
 import Img from '../../components/img'
-import { random, push } from '../../utils'
+import { c, push } from '../../utils'
 import { menuButtonStyleInject } from '../../constants'
 import './index.scss'
 
-function getRandomLx() {
-  return Number(`${random(0, 800)}.${random(0, 9)}`)
-}
-function getRandomK() {
-  return Number(`${random(2000, 7000)}.${random(0, 9)}`)
-}
-
+@inject('store')
+@observer
 class Index extends Component {
-  state = {
-    lx: getRandomLx(),
-    k: getRandomK()
+  get connecting() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.connecting
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        lx: getRandomLx(),
-        k: getRandomK()
-      })
-    }, 4000)
+  get lx() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.lx
+  }
+
+  get k() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.k
   }
 
   // 2000-7000k
   get percent() {
-    const { k } = this.state
-    if (k <= 2000) {
+    if (this.k <= 2000) {
       return 0
     }
 
-    if (k >= 7000) {
+    if (this.k >= 7000) {
       return '100%'
     }
 
-    return `${(((k - 2000) / 5000) * 100).toFixed(2)}%`
+    return `${(((this.k - 2000) / 5000) * 100).toFixed(2)}%`
   }
 
   render() {
-    const { lx, k } = this.state
     return (
       <View className='page' style={menuButtonStyleInject}>
-        <Text className='navigation-title'>云知光灯光捕手</Text>
-
+        <IBeacon />
+        <Text className='navigation-title'></Text>
         <View class='title'>
-          <Text>徐老师的灯光捕手 </Text>
+          <Text>云知光灯光捕手 </Text>
           <View className='ml-12' onClick={() => push('docking')}>
-            <Text className='iconfont icon-connect t-main' />
+            <Text
+              className={c('iconfont icon-connect', {
+                't-main': this.connecting,
+                't-sub': !this.connecting
+              })}
+            />
           </View>
         </View>
-
         <View class='item flex-center-y'>
           <View class='flex-1'>
             <Img src={require('../../assets/images/lx.png')} width={70} />
             <Text class='item-label'>照度</Text>
           </View>
           <View>
-            <Text class='item-value'>{lx || '-'} lx</Text>
+            <Text class='item-value'>{this.lx || '-'} lx</Text>
           </View>
         </View>
-
         <View class='item flex-column-center-y'>
           <View class='flex-center-y'>
             <View class='flex-1'>
@@ -77,7 +79,7 @@ class Index extends Component {
               <Text class='item-label'>色温</Text>
             </View>
             <View>
-              <Text class='item-value'>{k || '-'} K</Text>
+              <Text class='item-value'>{this.k || '-'} K</Text>
             </View>
           </View>
           <View class='item-k'>

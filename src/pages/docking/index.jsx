@@ -2,17 +2,23 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-24 10:56:53
+ * @Last Modified time: 2020-11-25 16:24:49
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
-// import { $ } from '@tarojs/extend'
-import { AtModal, AtModalContent, AtModalAction } from 'taro-ui'
+// import { AtModal, AtModalContent, AtModalAction } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
+import IBeacon from '../../components/ibeacon'
 import Btn from '../../components/btn'
 import Img from '../../components/img'
-import Ipt from '../../components/ipt'
-import { c, trim, info, back, sleep } from '../../utils'
+// import Ipt from '../../components/ipt'
+import {
+  c,
+  // trim,
+  info,
+  back,
+  sleep
+} from '../../utils'
 import './index.scss'
 
 const initState = {
@@ -37,31 +43,26 @@ class Docking extends Component {
 
   onDocked = async () => {
     this.setState({
-      docked: true,
-      open: true
+      docked: true
     })
 
-    // await sleep(240)
-    // console.log($('.c-ipt__input').focus)
+    setTimeout(() => {
+      if (this.connecting) {
+        this.onOk()
+      } else {
+        this.onDocked()
+      }
+    }, 2400)
   }
 
-  onChange = name => {
-    this.setState({
-      name
-    })
-  }
+  // onChange = name => {
+  //   this.setState({
+  //     name
+  //   })
+  // }
 
-  onSubmit = async () => {
-    const { name } = this.state
-    if (trim(name) === '') {
-      info('请输入设备名字')
-      return
-    }
-
+  onOk = async () => {
     info('配对成功', 'success')
-    this.setState({
-      open: false
-    })
 
     await sleep(2000)
     back()
@@ -70,6 +71,12 @@ class Docking extends Component {
     this.setState({
       ...initState
     })
+  }
+
+  get connecting() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.connecting
   }
 
   renderStep1() {
@@ -107,7 +114,7 @@ class Docking extends Component {
   }
 
   renderStep2() {
-    const { docked, open, name } = this.state
+    const { docked } = this.state
     return (
       <View className='page page--step-2'>
         <View className='stage'>
@@ -135,7 +142,7 @@ class Docking extends Component {
           </Text>
         </View>
 
-        {!docked && (
+        {/* !docked && (
           <Btn
             className='mt-40'
             type='main'
@@ -144,9 +151,9 @@ class Docking extends Component {
           >
             模拟蓝牙对接完成
           </Btn>
-        )}
+        )*/}
 
-        <AtModal isOpened={open}>
+        {/* <AtModal isOpened={open}>
           <AtModalContent>
             <Text className='t-34 l-44 t-c'>命名</Text>
             <Text className='t-26 l-32 t-c mt-16'>为您的设备命名</Text>
@@ -155,7 +162,7 @@ class Docking extends Component {
           <AtModalAction>
             <Btn onClick={this.onSubmit}>确定</Btn>
           </AtModalAction>
-        </AtModal>
+        </AtModal> */}
       </View>
     )
   }
@@ -164,6 +171,7 @@ class Docking extends Component {
     const { step } = this.state
     return (
       <View>
+        <IBeacon />
         {step === 1 && this.renderStep1()}
         {step === 2 && this.renderStep2()}
       </View>

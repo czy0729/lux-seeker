@@ -1,9 +1,8 @@
-/* eslint-disable react/no-unused-state */
 /*
  * @Author: czy0729
  * @Date: 2020-11-19 16:56:22
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 17:50:09
+ * @Last Modified time: 2020-11-25 15:36:41
  */
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
@@ -19,10 +18,6 @@ import './index.scss'
 @inject('store')
 @observer
 class CustomTabBar extends Component {
-  state = {
-    selected: ''
-  }
-
   switchTab = (toPath, index) => {
     const { store } = this.props
     const { tabbar } = store

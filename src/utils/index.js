@@ -3,7 +3,7 @@
  * @Author: czy0729
  * @Date: 2020-11-13 11:36:10
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-24 10:41:38
+ * @Last Modified time: 2020-11-25 15:49:19
  */
 import Taro from '@tarojs/taro'
 import classNames from 'classnames'
@@ -122,6 +122,12 @@ export function ab2hex(buffer) {
     return ('00' + bit.toString(16)).slice(-2)
   })
   return hexArr.join('')
+}
+
+export function hex2float(hex) {
+  return new Float32Array(
+    new Uint8Array(new Uint32Array([`0x${hex}`]).buffer).reverse().buffer
+  )[0]
 }
 
 /**

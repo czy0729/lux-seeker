@@ -2,64 +2,73 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 17:51:42
+ * @Last Modified time: 2020-11-25 16:26:49
  */
 import React, { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { ScrollView, View, Text } from '@tarojs/components'
+import { observer, inject } from 'mobx-react'
 import Btn from '../../components/btn'
-import { getTimestamp, date, deepmerge, random } from '../../utils'
+import { getTimestamp, date, deepmerge, push } from '../../utils'
 import { menuButtonStyleInject } from '../../constants'
 import './index.scss'
 
 const format = 'H:i:s'
-function getRandomLx() {
-  return Number(`${random(0, 800)}.${random(0, 9)}`)
-}
-function getRandomK() {
-  return Number(`${random(2000, 7000)}.${random(0, 9)}`)
-}
 
+@inject('store')
+@observer
 class Tick extends Component {
   state = {
     scrollIntoView: '',
-    list: [
-      {
-        time: date(format, getTimestamp()),
-        lx: getRandomLx(),
-        k: getRandomK()
-      },
-      {
-        time: date(format, getTimestamp() + 2),
-        lx: getRandomLx(),
-        k: getRandomK()
-      }
-    ]
+    list: []
   }
 
   onReset = () => {
-    this.setState(
-      {
-        scrollIntoView: '',
-        list: []
-      },
-      () => {
-        this.onTest()
-      }
-    )
+    this.setState({
+      scrollIntoView: '',
+      list: []
+    })
   }
 
-  onTest = () => {
+  onTick = () => {
+    if (!this.connecting) {
+      Taro.showToast({
+        title: '设备未连接',
+        icon: 'none',
+        duration: 2400
+      })
+      return
+    }
+
     const { list } = this.state
     const _list = deepmerge(list)
     _list.push({
       time: date(format, getTimestamp()),
-      lx: getRandomLx(),
-      k: getRandomK()
+      lx: this.lx,
+      k: this.k
     })
     this.setState({
       scrollIntoView: `item--${list.length - 1}`,
       list: _list
     })
+  }
+
+  get connecting() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.connecting
+  }
+
+  get lx() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.lx
+  }
+
+  get k() {
+    const { store } = this.props
+    const { ibeacon } = store
+    return ibeacon.k
   }
 
   get avgLx() {
@@ -92,7 +101,9 @@ class Tick extends Component {
       <View className='page' style={menuButtonStyleInject}>
         <View className='head'>
           <View className='head-left'>
-            <Text className='iconfont icon-connect' />
+            <View onClick={() => push('docking')}>
+              <Text className='iconfont icon-connect' />
+            </View>
             <Text className='iconfont icon-share' />
           </View>
           <Text>逐点测量</Text>
@@ -137,7 +148,7 @@ class Tick extends Component {
           <Btn className='ml-16' type='plain-fill' onClick={this.onReset}>
             重测
           </Btn>
-          <Btn className='ml-16' type='main-fill' onClick={this.onTest}>
+          <Btn className='ml-16' type='main-fill' onClick={this.onTick}>
             点击测量
           </Btn>
         </View>
