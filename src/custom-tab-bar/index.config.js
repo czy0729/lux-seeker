@@ -1,3 +1,1 @@
-export default {
-  component: true
-}
+export default {}

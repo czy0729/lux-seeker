@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-13 11:17:11
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-23 12:13:29
+ * @Last Modified time: 2020-11-25 16:54:42
  */
 import React, { Component } from 'react'
 import { View } from '@tarojs/components'
@@ -12,6 +12,13 @@ import { CDN } from '../../constants'
 import './index.scss'
 
 class Explain extends Component {
+  static onShareAppMessage = () => {
+    return {
+      title: '云知光灯光捕手',
+      path: '/pages/index/index'
+    }
+  }
+
   render() {
     return (
       <View className='page'>

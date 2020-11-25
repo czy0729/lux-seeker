@@ -4,7 +4,7 @@
 
 $page: calc(100vh - #{$height-tab-bar});
 
-.page {
+.home {
   @include bg('../../assets/images/0_1.png', 320px, top left, transparent);
   height: $page;
   padding: var(--menu-button-top) 40px 0;

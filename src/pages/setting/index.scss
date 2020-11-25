@@ -2,8 +2,16 @@
 @import '@styles/extends';
 @import '@styles/mixins';
 
-.page {
-  padding: 48px - 32px 40px 48px;
+.setting {
+  padding: var(--menu-button-top) 40px 48px;
+
+  .head {
+    position: relative;
+    @extend %flex-center;
+    height: var(--menu-button-height);
+    margin-bottom: 40px;
+    @include t(30px, 44px, $color-plain, center);
+  }
 
   .item {
     @extend %flex-center;

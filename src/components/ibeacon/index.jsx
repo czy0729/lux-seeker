@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 09:44:35
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 16:15:34
+ * @Last Modified time: 2020-11-25 16:47:58
  */
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
@@ -79,6 +79,7 @@ class IBeacon extends Component {
 
     Taro.startBluetoothDevicesDiscovery({
       services: [],
+      interval: 0,
       allowDuplicatesKey: true,
       success: res => {
         if (!res.isDiscovering) {

@@ -8,10 +8,11 @@ $head-margin-bottom: 20px;
 $th: 80px;
 $ft: 226px;
 $ul: calc(
-  100vh - #{$height-tab-bar} - #{$head} - #{$head-margin-bottom} - #{$th} - #{$ft}
+  100vh - #{$height-tab-bar} - #{$head} - #{$head-margin-bottom} - #{$th} - #{$ft} -
+    env(safe-area-inset-bottom)
 );
 
-.page {
+.tick {
   @extend %flex-column;
   height: $page;
   padding-top: var(--menu-button-top);

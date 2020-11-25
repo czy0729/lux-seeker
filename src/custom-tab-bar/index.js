@@ -2,14 +2,14 @@
  * @Author: czy0729
  * @Date: 2020-11-19 16:56:22
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 15:36:41
+ * @Last Modified time: 2020-11-25 17:59:12
  */
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Img from '../components/img'
 import { c } from '../utils'
+import { IOS } from '../constants'
 import Img1 from '../assets/images/t_1.png'
 import Img2 from '../assets/images/t_2.png'
 import Img3 from '../assets/images/t_3.png'
@@ -18,20 +18,30 @@ import './index.scss'
 @inject('store')
 @observer
 class CustomTabBar extends Component {
+  static defaultProps = {
+    onChange: Function.prototype
+  }
+
   switchTab = (toPath, index) => {
-    const { store } = this.props
+    const { store, onChange } = this.props
     const { tabbar } = store
     tabbar.setIndex(index)
-    Taro.switchTab({
-      url: toPath
-    })
+    onChange(index)
+
+    // Taro.switchTab({
+    //   url: toPath
+    // })
   }
 
   render() {
     const { store } = this.props
     const { tabbar } = store
     return (
-      <View className='custom-tar-bar'>
+      <View
+        className={c('custom-tar-bar', {
+          'custom-tar-bar--ios': IOS
+        })}
+      >
         <View
           className={c('item', {
             'item--active': tabbar.index === 0

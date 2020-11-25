@@ -2,13 +2,12 @@
  * @Author: czy0729
  * @Date: 2020-11-18 10:28:31
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 16:24:49
+ * @Last Modified time: 2020-11-25 17:33:28
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 // import { AtModal, AtModalContent, AtModalAction } from 'taro-ui'
 import { observer, inject } from 'mobx-react'
-import IBeacon from '../../components/ibeacon'
 import Btn from '../../components/btn'
 import Img from '../../components/img'
 // import Ipt from '../../components/ipt'
@@ -31,21 +30,29 @@ const initState = {
 @inject('store')
 @observer
 class Docking extends Component {
+  static onShareAppMessage = () => {
+    return {
+      title: '云知光灯光捕手',
+      path: '/pages/index/index'
+    }
+  }
+
   state = {
     ...initState
   }
 
   onNext = () => {
+    const step = this.state.step + 1
     this.setState({
-      step: this.state.step + 1
+      step
     })
+
+    if (step === 2) {
+      this.onDocked()
+    }
   }
 
   onDocked = async () => {
-    this.setState({
-      docked: true
-    })
-
     setTimeout(() => {
       if (this.connecting) {
         this.onOk()
@@ -62,6 +69,9 @@ class Docking extends Component {
   // }
 
   onOk = async () => {
+    this.setState({
+      docked: true
+    })
     info('配对成功', 'success')
 
     await sleep(2000)
@@ -171,7 +181,6 @@ class Docking extends Component {
     const { step } = this.state
     return (
       <View>
-        <IBeacon />
         {step === 1 && this.renderStep1()}
         {step === 2 && this.renderStep2()}
       </View>
