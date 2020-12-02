@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-18 09:44:35
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 16:47:58
+ * @Last Modified time: 2020-12-01 15:46:06
  */
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
@@ -18,10 +18,6 @@ class IBeacon extends Component {
   deviceId
 
   startConnect = () => {
-    // Taro.showLoading({
-    //   title: '开启蓝牙适配'
-    // })
-
     Taro.openBluetoothAdapter({
       success: () => {
         this.getBluetoothAdapterState()
@@ -34,10 +30,6 @@ class IBeacon extends Component {
           icon: 'none',
           duration: 4000
         })
-
-        setTimeout(() => {
-          Taro.hideToast()
-        }, 2000)
       }
     })
 
@@ -57,10 +49,6 @@ class IBeacon extends Component {
             icon: 'none',
             duration: 4000
           })
-
-          setTimeout(() => {
-            Taro.hideToast()
-          }, 2000)
         } else if (!res.discovering) {
           this.handleDisConnect()
           this.startBluetoothDevicesDiscovery()
@@ -73,10 +61,6 @@ class IBeacon extends Component {
   }
 
   startBluetoothDevicesDiscovery = () => {
-    Taro.showLoading({
-      title: '正在配对'
-    })
-
     Taro.startBluetoothDevicesDiscovery({
       services: [],
       interval: 0,
@@ -108,7 +92,6 @@ class IBeacon extends Component {
           )
 
           if (!this.founded) {
-            Taro.hideToast()
             this.founded = true
           }
           this.deviceId = deviceId

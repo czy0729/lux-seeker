@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 17:51:26
+ * @Last Modified time: 2020-12-01 15:56:56
  */
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
@@ -84,10 +84,10 @@ class Tick extends Component {
       return '-'
     }
 
-    return (
+    return parseInt(
       list.map(item => item.lx).reduce((prev, cur) => prev + cur, 0) /
-      list.length
-    ).toFixed(1)
+        list.length
+    )
   }
 
   get avgK() {
@@ -96,10 +96,10 @@ class Tick extends Component {
       return '-'
     }
 
-    return (
+    return parseInt(
       list.map(item => item.k).reduce((prev, cur) => prev + cur, 0) /
-      list.length
-    ).toFixed(1)
+        list.length
+    )
   }
 
   render() {
@@ -108,7 +108,13 @@ class Tick extends Component {
       <View className='tick' style={menuButtonStyleInject}>
         <View className='head'>
           <View className='head-left'>
-            <View onClick={() => push('docking')}>
+            <View
+              onClick={() => {
+                if (!this.connecting) {
+                  push('docking')
+                }
+              }}
+            >
               <Text
                 className={c('iconfont icon-connect', {
                   't-main': this.connecting,

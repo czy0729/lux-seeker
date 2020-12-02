@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-25 17:52:50
+ * @Last Modified time: 2020-12-01 15:54:27
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
@@ -57,7 +57,14 @@ class Home extends Component {
     return (
       <View className='home' style={menuButtonStyleInject}>
         <Text className='navigation-title' />
-        <View class='title' onClick={() => push('docking')}>
+        <View
+          class='title'
+          onClick={() => {
+            if (!this.connecting) {
+              push('docking')
+            }
+          }}
+        >
           <Text>云知光灯光捕手 </Text>
           <View className='ml-12'>
             <Text

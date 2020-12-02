@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "dist/",
   "projectname": "lux-seeker",
-  "description": "小工具",
-  "appid": "wx4a56833caa9ed341",
+  "description": "云知光灯光捕手",
+  "appid": "wx7e072c7d01c9fcf5",
   "setting": {
     "urlCheck": true,
     "es6": false,

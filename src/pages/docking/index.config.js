@@ -1,4 +1,4 @@
 export default {
-  navigationBarTitleText: '启动灯光捕手',
+  navigationBarTitleText: '连接灯光捕手',
   disableScroll: true
 }

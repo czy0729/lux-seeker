@@ -56,13 +56,13 @@
     position: relative;
     @extend %flex-center-y;
     justify-content: space-between;
-    height: 558px;
+    height: 480px;
     padding: 0 24px 0 32px;
     background: #000;
     border-radius: 32px;
   }
   &-desc {
     @include t(28px, 44px, $color-plain, center);
-    margin-top: 48px;
+    margin-top: 24px;
   }
 }
