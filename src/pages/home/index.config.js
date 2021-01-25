@@ -1,5 +1,5 @@
 export default {
-  navigationBarTitleText: '云知光灯光捕手',
+  navigationBarTitleText: '欧能照明灯光捕手',
   navigationStyle: 'custom',
   disableScroll: true
 }

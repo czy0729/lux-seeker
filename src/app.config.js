@@ -12,7 +12,7 @@ export default {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#191919',
     navigationBarTextStyle: 'white',
-    navigationBarTitleText: '云知光灯光捕手'
+    navigationBarTitleText: '欧能照明灯光捕手'
   }
   // tabBar: {
   //   custom: true,

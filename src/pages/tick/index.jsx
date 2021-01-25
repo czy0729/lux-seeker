@@ -30,7 +30,7 @@ function k(val) {
 class Tick extends Component {
   static onShareAppMessage = () => {
     return {
-      title: '云知光灯光捕手',
+      title: '欧能照明灯光捕手',
       path: '/pages/index/index'
     }
   }

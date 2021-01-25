@@ -17,7 +17,7 @@ import './index.scss'
 class Home extends Component {
   static onShareAppMessage = () => {
     return {
-      title: '云知光灯光捕手',
+      title: '欧能照明灯光捕手',
       path: '/pages/index/index'
     }
   }
@@ -88,7 +88,7 @@ class Home extends Component {
             }
           }}
         >
-          <Text>云知光灯光捕手 </Text>
+          <Text>欧能照明灯光捕手 </Text>
           <View className='ml-12'>
             <Text
               className={c('iconfont icon-connect', {
