@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-12-01 15:56:56
+ * @Last Modified time: 2021-01-07 17:15:48
  */
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
@@ -14,6 +14,16 @@ import { menuButtonStyleInject } from '../../constants'
 import './index.scss'
 
 const format = 'H:i:s'
+function lx(val) {
+  if (val <= 1) return 0
+  if (val >= 10000) return 'over'
+  return val
+}
+function k(val) {
+  if (val <= 1) return val
+  if (val <= 2000 || val >= 7000) return 'over'
+  return val
+}
 
 @inject('store')
 @observer
@@ -78,28 +88,36 @@ class Tick extends Component {
     return ibeacon.k
   }
 
-  get avgLx() {
+  get items() {
     const { list } = this.state
-    if (!list.length) {
-      return '-'
-    }
-
-    return parseInt(
-      list.map(item => item.lx).reduce((prev, cur) => prev + cur, 0) /
-        list.length
+    return list.filter(
+      item =>
+        !(item.lx <= 1 || item.lx >= 10000 || item.k <= 2000 || item.k >= 7000)
     )
   }
 
-  get avgK() {
-    const { list } = this.state
-    if (!list.length) {
+  get avgLx() {
+    if (!this.items.length) {
       return '-'
     }
 
-    return parseInt(
-      list.map(item => item.k).reduce((prev, cur) => prev + cur, 0) /
-        list.length
+    const avg = parseInt(
+      this.items.map(item => item.lx).reduce((prev, cur) => prev + cur, 0) /
+        this.items.length
     )
+    return avg === 0 ? '-' : avg
+  }
+
+  get avgK() {
+    if (!this.items.length) {
+      return '-'
+    }
+
+    const avg = parseInt(
+      this.items.map(item => item.k).reduce((prev, cur) => prev + cur, 0) /
+        this.items.length
+    )
+    return avg === 0 ? '-' : avg
   }
 
   render() {
@@ -144,8 +162,8 @@ class Tick extends Component {
             <View key={index} className='li' id={`item--${index}`}>
               <Text>{index + 1}</Text>
               <Text>{item.time}</Text>
-              <Text>{item.lx}</Text>
-              <Text>{item.k}</Text>
+              <Text>{lx(item.lx)}</Text>
+              <Text>{k(item.k)}</Text>
             </View>
           ))}
 

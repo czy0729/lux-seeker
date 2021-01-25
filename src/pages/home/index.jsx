@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-11-19 14:10:40
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-12-01 15:54:27
+ * @Last Modified time: 2021-01-07 17:03:37
  */
 import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
@@ -31,31 +31,54 @@ class Home extends Component {
   get lx() {
     const { store } = this.props
     const { ibeacon } = store
+    if (ibeacon.lx <= 1) {
+      return 0
+    }
+
+    if (ibeacon.lx >= 10000) {
+      return 'over'
+    }
+
     return ibeacon.lx
   }
 
   get k() {
     const { store } = this.props
     const { ibeacon } = store
+    if (ibeacon.k <= 1) {
+      return ibeacon.k
+    }
+
+    if (ibeacon.k <= 2000 || ibeacon.k >= 7000) {
+      return 'over'
+    }
+
     return ibeacon.k
   }
 
   // 2000-7000k
   get percent() {
-    if (this.k <= 2000) {
+    const { store } = this.props
+    const { ibeacon } = store
+    if (ibeacon.k <= 2000) {
       return 0
     }
 
-    if (this.k >= 7000) {
+    if (ibeacon.k >= 7000) {
       return '100%'
     }
 
-    return `${(((this.k - 2000) / 5000) * 100).toFixed(2)}%`
+    return `${(((ibeacon.k - 2000) / 5000) * 100).toFixed(2)}%`
   }
 
   render() {
     return (
-      <View className='home' style={menuButtonStyleInject}>
+      <View
+        className={c('home', {
+          'home--connecting': this.connecting
+        })}
+        style={menuButtonStyleInject}
+      >
         <Text className='navigation-title' />
         <View
           class='title'
@@ -81,7 +104,9 @@ class Home extends Component {
             <Text class='item-label'>照度</Text>
           </View>
           <View>
-            <Text class='item-value'>{this.lx || '-'} lx</Text>
+            <Text class='item-value'>
+              {this.k === 'over' ? 'over' : this.lx || '-'} lx
+            </Text>
           </View>
         </View>
         <View class='item flex-column-center-y'>
@@ -91,7 +116,9 @@ class Home extends Component {
               <Text class='item-label'>色温</Text>
             </View>
             <View>
-              <Text class='item-value'>{this.k || '-'} K</Text>
+              <Text class='item-value'>
+                {this.lx === 'over' ? 'over' : this.k || '-'} K
+              </Text>
             </View>
           </View>
           <View class='item-k'>

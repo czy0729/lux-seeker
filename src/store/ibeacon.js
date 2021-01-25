@@ -2,12 +2,12 @@
  * @Author: czy0729
  * @Date: 2020-11-25 15:33:35
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-11-27 12:15:50
+ * @Last Modified time: 2020-12-11 15:22:54
  */
 import { observable } from 'mobx'
 
 const ibeaconStore = observable({
-  connecting: false,
+  connecting: true,
   lx: 0,
   k: 0,
 

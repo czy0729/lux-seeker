@@ -9,6 +9,10 @@ $page: calc(100vh - #{$height-tab-bar});
   height: $page;
   padding: var(--menu-button-top) 40px 0;
 
+  &--connecting {
+    @include bg('../../assets/images/0_1_1.png', 320px, top left, transparent);
+  }
+
   .navigation-title {
     @extend %flex-center-y;
     height: var(--menu-button-height);
